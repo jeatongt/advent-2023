@@ -44,38 +44,35 @@ def string_to_calibration_value(calibration_string):
         last_number_string = last_number_string + character
         if 'one' in last_number_string:
             last_number = '1'
-            last_number_string = ''
+            last_number_string = character
         if 'two' in last_number_string:
             last_number = '2'
-            last_number_string = ''
+            last_number_string = character
         if 'three' in last_number_string:
             last_number = '3'
-            last_number_string = ''
+            last_number_string = character
         if 'four' in last_number_string:
             last_number = '4'
-            last_number_string = ''
+            last_number_string = character
         if 'five' in last_number_string:
             last_number = '5'
-            last_number_string = ''
+            last_number_string = character
         if 'six' in last_number_string:
             last_number = '6'
-            last_number_string = ''
+            last_number_string = character
         if 'seven' in last_number_string:
             last_number = '7'
-            last_number_string = ''
+            last_number_string = character
         if 'eight' in last_number_string:
             last_number = '8'
-            last_number_string = ''
+            last_number_string = character
         if 'nine' in last_number_string:
             last_number = '9'
-            last_number_string = ''
-        if 'zero' in last_number_string:
-            last_number = '0'
-            last_number_string = ''
+            last_number_string = character
     return 10*int(first_number) + int(last_number)
 
 total = 0
-with open('/Users/jeaton/Git/advent-2023/Day01-1/calibration-input.txt', 'r') as file:
+with open('/Users/jeaton/Git/advent-2023/Day01/calibration-input.txt', 'r') as file:
     for line in file.readlines():
         calibration_string = line.strip()  # remove newline characters
         calibration_value = string_to_calibration_value(calibration_string)
