@@ -22,3 +22,17 @@ def sum_of_part_numbers_this_line(previous_schematic_string, schematic_string, n
             parts_this_line += int(part_number.group(1))
     return parts_this_line
 
+total = 0
+previous_line = None
+current_line = None
+with open('/Users/jeaton/Git/advent-2023/Day03/test-input.txt', 'r') as file:
+    for next_line in file.readlines():
+        if current_line is not None:
+            total += sum_of_part_numbers_this_line(previous_line, current_line, next_line)
+        previous_line = current_line
+        current_line = next_line.strip()
+    previous_line = current_line
+    current_line = next_line
+    next_line = None
+    total += sum_of_part_numbers_this_line(previous_line, current_line, next_line)
+print(total)
