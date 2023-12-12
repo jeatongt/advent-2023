@@ -52,7 +52,7 @@ gear_dict = {}
 previous_line = None
 current_line = None
 line_number = 0
-with open('/Users/jeaton/Git/advent-2023/Day03/test-input.txt', 'r') as file:
+with open('/Users/jeaton/Git/advent-2023/Day03/engine-schematic.txt', 'r') as file:
     for next_line in file.readlines():
         next_line = next_line.strip()
         if current_line is not None:
