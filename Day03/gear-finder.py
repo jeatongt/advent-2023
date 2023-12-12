@@ -11,7 +11,7 @@ def find_gears_in_this_span(schematic_string, start, end, line_number, part_numb
     gears_this_part = []
     for gear in re.finditer(r'\*', schematic_string[start:end]):
         this_gear = {'gear_line': line_number, 'gear_position': gear.start(), 'part_number': part_number}
-        print('Found this gear: ' + this_gear)
+        print(this_gear)
         gears_this_part.append(this_gear)
     return gears_this_part
 
@@ -23,9 +23,9 @@ def find_gears_for_parts_in_this_line(previous_schematic_string, schematic_strin
         # print(previous_schematic_string)
         # print(schematic_string)
         # print(next_schematic_string)
-        gears_this_line.append(find_gears_in_this_span(previous_schematic_string, part_number.start()-1, part_number.end()+1), line_number, part_number.group())
-        gears_this_line.append(find_gears_in_this_span(schematic_string, part_number.start()-1, part_number.end()+1), line_number, part_number.group())
-        gears_this_line.append(find_gears_in_this_span(next_schematic_string, part_number.start()-1, part_number.end()+1), line_number, part_number.group())
+        gears_this_line.append(find_gears_in_this_span(previous_schematic_string, part_number.start()-1, part_number.end()+1, line_number, part_number.group()))
+        gears_this_line.append(find_gears_in_this_span(schematic_string, part_number.start()-1, part_number.end()+1, line_number, part_number.group()))
+        gears_this_line.append(find_gears_in_this_span(next_schematic_string, part_number.start()-1, part_number.end()+1, line_number, part_number.group()))
     return gears_this_line
 
 total = 0
