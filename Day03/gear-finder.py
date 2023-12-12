@@ -73,3 +73,7 @@ with open('/Users/jeaton/Git/advent-2023/Day03/test-input.txt', 'r') as file:
                     gear_dict[key] = []
                 gear_dict[key].extend(parts_in_this_line[key])            
 print(gear_dict)
+for key in gear_dict:
+    if len(gear_dict[key]) > 1:
+        total += int(gear_dict[key][0])*int(gear_dict[key][1])
+print(total)
