@@ -29,14 +29,18 @@ def score_of_this_card(card_string):
             score += 1
     return score
 
-def winning_copies(original_cards, cards_to_score):
+def get_winning_copies(original_cards, cards_to_score):
     winning_copies = []
     for card in cards_to_score:
         card_id = re.search(r'Card\s*(\d+)').group(1)
-        
+        print(card_id)
+        for i in range(score_of_this_card(card)):
+            winning_copies.append(original_cards[int(card_id)+i+1])
+    return winning_copies
+
 
 def get_count_of_these_cards_and_their_copies(original_cards, cards_to_score):
-    card_count = get_count_of_these_cards_and_their_copies(original_cards, winning_copies(original_cards, cards_to_score))+len(cards_to_score)
+    card_count = get_count_of_these_cards_and_their_copies(original_cards, get_winning_copies(original_cards, cards_to_score))+len(cards_to_score)
     return card_count
 
 with open('/Users/jeaton/Git/advent-2023/Day04/scratchcards.txt', 'r') as file:
