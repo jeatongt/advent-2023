@@ -43,7 +43,7 @@ def get_count_of_these_cards_and_their_copies(original_cards, cards_to_score):
     card_count = get_count_of_these_cards_and_their_copies(original_cards, get_winning_copies(original_cards, cards_to_score))+len(cards_to_score)
     return card_count
 
-with open('/Users/jeaton/Git/advent-2023/Day04/scratchcards.txt', 'r') as file:
+with open('/Users/jeaton/Git/advent-2023/Day04/test-input.txt', 'r') as file:
     original_cards = file.readlines()
     total_count = get_count_of_these_cards_and_their_copies(original_cards, original_cards)
     print(total_count)
