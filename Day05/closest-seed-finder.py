@@ -1,5 +1,6 @@
 # python
 import re
+import operator
 
 def make_map(map_lines):
     map = {}
@@ -17,7 +18,7 @@ def get_map_value(map, key):
     else:
         return key
 
-with open('/Users/jeaton/Git/advent-2023/Day05/test-map.txt', 'r') as file:
+with open('/Users/jeaton/Git/advent-2023/Day05/full-map.txt', 'r') as file:
     map_file_full = file.readlines()
     map_file = [line.strip() for line in map_file_full]
     i = 0
@@ -53,4 +54,6 @@ with open('/Users/jeaton/Git/advent-2023/Day05/test-map.txt', 'r') as file:
 seed_location_map = {}
 for seed in seeds:
     seed_location_map[seed] = get_map_value(humidity_location_map, get_map_value(temperature_humidity_map, get_map_value(light_temperature_map, get_map_value(water_light_map, get_map_value(fertilizer_water_map, get_map_value(soil_fertilizer_map, get_map_value(seed_soil_map, seed)))))))
-print(seed_location_map)
+sorted_seed_location_map = dict(sorted(seed_location_map.items(), key=operator.itemgetter(1)))
+first_key, first_value = next(iter(sorted_seed_location_map.items()))
+print(f"Seed: {first_key}, Location: {first_value}")
