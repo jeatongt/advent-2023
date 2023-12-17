@@ -2,6 +2,11 @@
 import re
 import operator
 
+# seeds: 79 14 55 13
+# seed-to-soil map:
+# 50 98 2
+# 52 50 48
+# This function needs to accept a range instead of a key, and return a list of ranges
 def get_map_value(map_lines, key):
     for line in map_lines:
         matches = re.findall(r'(\d+)\s*(\d+)\s*(\d+)', line)
@@ -56,7 +61,7 @@ seed_location_map = {}
 print(seeds)
 for key, value in seeds.items():
     location_map_seed, location_map_location = get_best_location(key, value)
-    print("Best location for seed " + key + " is " + str(location_map_seed) + " at " + str(location_map_location))
+    print("Best location for seed range " + key + " is " + str(location_map_seed) + " at " + str(location_map_location))
     seed_location_map[location_map_seed] = location_map_location
 sorted_seed_location_map = dict(sorted(seed_location_map.items(), key=operator.itemgetter(1)))
 first_key, first_value = next(iter(sorted_seed_location_map.items()))
