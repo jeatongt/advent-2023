@@ -48,7 +48,7 @@ def get_map_ranges(map_lines, source_dict):
         destination_dict.update(get_map_ranges(map_lines, additional_ranges_dict))
     return destination_dict
 
-with open('/Users/jeaton/Git/advent-2023/Day05/test-map.txt', 'r') as file:
+with open('/Users/jeaton/Git/advent-2023/Day05/full-map.txt', 'r') as file:
     map_file_full = file.readlines()
     map_file = [line.strip() for line in map_file_full]
     i = 0
