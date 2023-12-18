@@ -9,7 +9,7 @@ def find_list_of_winning_button_times(time, distance):
             winning_times.append(i)
     return winning_times
 
-with open('/Users/jeaton/Git/advent-2023/Day06/test-races.txt', 'r') as file:
+with open('/Users/jeaton/Git/advent-2023/Day06/real-races.txt', 'r') as file:
     race_file_full = file.readlines()
     race_file = [line.strip() for line in race_file_full]
     i = 0
