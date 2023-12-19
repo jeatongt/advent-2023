@@ -64,7 +64,7 @@ def one_pair(hand):
 
 def high_cards(hand):
     card_values = ''
-    rank_values = {'A': 'a', 'K': 'b', 'Q': 'c', 'J': 'd', 'T': 'e', '9': 'f', '8': 'g', '7': 'h', '6': 'i', '5': 'j', '4': 'k', '3': 'l', '2': 'm'}
+    rank_values = {'A': 'a', 'K': 'b', 'Q': 'c', 'J': 'm', 'T': 'd', '9': 'e', '8': 'f', '7': 'g', '6': 'h', '5': 'i', '4': 'j', '3': 'k', '2': 'l'}
     for card in hand:
         card_values += rank_values[card]
     return card_values    
@@ -84,7 +84,7 @@ def jokers_wild(joker_conversion):
     return joker_conversion
 
 hands = []
-with open('/Users/jeaton/Git/advent-2023/Day07/test-hands.txt', 'r') as file:
+with open('/Users/jeaton/Git/advent-2023/Day07/full-hands.txt', 'r') as file:
     for line in file.readlines():
         this_hand = []
         cards = re.findall(r'\w+', line.strip())
@@ -93,9 +93,9 @@ with open('/Users/jeaton/Git/advent-2023/Day07/test-hands.txt', 'r') as file:
             this_hand.append(cards[1])
             this_hand.append(score_of_this_hand(this_hand[:5]))
         hands.append(this_hand)
-print(hands)
 sorted_hands = sorted(hands, key=lambda x: x[6], reverse=True)
 winnings = 0
+print(sorted_hands)
 for i in range(len(sorted_hands)):
     place = i + 1
     winnings += int(sorted_hands[i][5])*place
