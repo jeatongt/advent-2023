@@ -69,12 +69,18 @@ def high_cards(hand):
         card_values += rank_values[card]
     return card_values    
 
+# ['6', 'T', 'K', 'J', 'T', '701', 'eiebde']
 def jokers_wild(joker_conversion):
+    if 'J' not in joker_conversion:
+        return joker_conversion
     same_card = Counter(joker_conversion)
-    replacement = same_card.most_common(1)[0][0]
-    for i in range(len(joker_conversion)):
-        if joker_conversion[i] == 'J':
-            joker_conversion[i] = replacement
+    sorted_same_card = dict(sorted(same_card.items(), key=lambda item: item[1], reverse=True))
+    for rank in sorted_same_card:
+        if sorted_same_card[rank] == 5:
+            return joker_conversion
+        if rank != 'J':
+            joker_conversion = [rank if x == 'J' else x for x in joker_conversion]
+            break
     return joker_conversion
 
 hands = []
