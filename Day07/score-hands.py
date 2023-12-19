@@ -68,7 +68,7 @@ def high_cards(hand):
     return card_values    
 
 hands = []
-with open('/Users/jeaton/Git/advent-2023/Day07/test-hands.txt', 'r') as file:
+with open('/Users/jeaton/Git/advent-2023/Day07/full-hands.txt', 'r') as file:
     for line in file.readlines():
         this_hand = []
         cards = re.findall(r'\w+', line.strip())
@@ -80,7 +80,8 @@ with open('/Users/jeaton/Git/advent-2023/Day07/test-hands.txt', 'r') as file:
 print(hands)
 sorted_hands = sorted(hands, key=lambda x: x[6], reverse=True)
 winnings = 0
-for i in len(sorted_hands):
-    winnings += int(sorted_hands[i][5])*(i+1)
+for i in range(len(sorted_hands)):
+    place = i + 1
+    winnings += int(sorted_hands[i][5])*place
 print(winnings)
     
