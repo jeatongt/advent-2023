@@ -1,5 +1,13 @@
 # python
 import re
+import math
+from functools import reduce
+
+def lcm(a, b):
+    return abs(a*b) // math.gcd(a, b)
+
+def lcm_list(numbers):
+    return reduce(lcm, numbers)
 
 def turn_and_get_new_node(current_nodes, map_nodes, direction):
     turnt_nodes = []
@@ -24,7 +32,7 @@ def get_starting_nodes(map_nodes):
     return starting_nodes
 
 map_lines = []
-with open('/Users/jeaton/Git/advent-2023/Day08/test-map2.txt', 'r') as file:
+with open('/Users/jeaton/Git/advent-2023/Day08/full-map.txt', 'r') as file:
     for line in file.readlines():
         map_lines.append(line.strip())
     turns = list(map_lines[0])
@@ -36,14 +44,28 @@ with open('/Users/jeaton/Git/advent-2023/Day08/test-map2.txt', 'r') as file:
 print(turns)
 print(map_nodes)
 
-current_nodes = get_starting_nodes(map_nodes)
+starting_nodes = get_starting_nodes(map_nodes)
 steps_taken = 0
-print(current_nodes)
-while am_i_there_yet(current_nodes) == False:
-    for turn in turns:
-        current_nodes = turn_and_get_new_node(current_nodes, map_nodes, turn)
-        print(current_nodes)
-        steps_taken += 1
-        if am_i_there_yet(current_nodes) == True:
-            break
-print(steps_taken)
+steps_list = []
+print(starting_nodes)
+for node in starting_nodes:
+    current_node = node
+    steps_taken = 0
+    print(node)
+    while current_node[2] != 'Z':
+        for turn in turns:
+            if turn == 'L':
+                current_node = map_nodes[current_node][0]
+                # print(current_node)
+                steps_taken += 1
+                if current_node[2] == 'Z':
+                    break
+            if turn == 'R':
+                current_node = map_nodes[current_node][1]
+                # print(current_node)
+                steps_taken += 1
+                if current_node[2] == 'Z':
+                    break
+    print(steps_taken)
+    steps_list.append(steps_taken)
+print(lcm_list(steps_list))
